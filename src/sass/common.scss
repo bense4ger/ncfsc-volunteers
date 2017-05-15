@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+$font: 'Roboto', Helvetica, sans-serif;
+$logo-yellow: #f9e636;
+$logo-green: #149551;
+$black: #0b2317;
+$white: #e6f1eb;
+
+@mixin shadow() {
+  -webkit-box-shadow: 0 0.5vh 10px 0 rgba(0,0,0,0.25);
+  -moz-box-shadow: 0 0.5vh 10px 0 rgba(0,0,0,0.25);
+  box-shadow: 0 0.5vh 10px 0 rgba(0,0,0,0.25);
+}
