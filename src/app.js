@@ -2,6 +2,7 @@
  * Created by benseager on 08/05/2017.
  */
 'use strict';
+import $ from 'jquery';
 import * as volunteerService from './services/volunteer-service';
 import App from './components/app.vue';
 
@@ -28,6 +29,19 @@ class AppLoader {
                     el: '#app',
                     render: h => h(App)
                 });
+
+
+                //TODO: Get rid of the jquery selectors.  Replace by passing stuff to the vue
+                setTimeout(() => {
+                    $('div.volunteer').addClass('initial');
+                }, 500);
+
+                setTimeout(() => {
+                    $('div.volunteer').each((ix, el) => {
+                        const $el = $(el);
+                        $el.addClass(`vol-${$el.data('index')}`);
+                    });
+                }, 2250);
             })
             .catch((err) => {
                 //TODO: Global Error Handling

@@ -1,9 +1,9 @@
 <template>
     <div class="app-container">
         <div class="app-container--volunteers">
-            <div class="volunteer-wrap" v-for="volunteer in volunteers">
-                <volunteer :volunteer-name="volunteer.name" :base-image-path="baseImagePath" v-on:click.native="selectVolunteer(volunteer.name)"></volunteer>
-            </div>
+            <template class="volunteer-wrap" v-for="(volunteer, index) in volunteers">
+                <volunteer :index="index" :volunteer-name="volunteer.name" :base-image-path="baseImagePath" v-on:click.native="selectVolunteer(volunteer.name)"></volunteer>
+            </template>
         </div>
         <div class="app-container--info">
             <template v-if="selected !== undefined">
