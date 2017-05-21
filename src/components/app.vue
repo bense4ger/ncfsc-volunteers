@@ -1,73 +1,56 @@
 <template>
-    <div class="app-container">
-        <div class="app-container--volunteers">
-            <template class="volunteer-wrap" v-for="(volunteer, index) in volunteers">
-                <volunteer :index="index" :volunteer-name="volunteer.name" :base-image-path="baseImagePath" v-on:click.native="selectVolunteer(volunteer.name)"></volunteer>
-            </template>
+    <div id="content-wrap" class="row">
+        <div class="row header">
+            <div class="small-12 columns"><h2>Our Volunteers</h2></div>
         </div>
-        <div class="app-container--info">
-            <template v-if="selected !== undefined">
-                <bio :volunteer-name="selected.name" :bio="selected.bio" v-on:click.native="clearSelection"></bio>
-            </template>
-            <template v-else>
-                <logo></logo>
-            </template>
-        </div>
+        <template v-for="(volunteer, index) in volunteers">
+            <div class="row app-container">
+                <div class="small-12 medium-4 columns app-container--volunteers">
+                    <volunteer :index="index" :volunteer-name="volunteer.name" :base-image-path="baseImagePath"></volunteer>
+                </div>
+                <div class="small-12 medium-8 columns app-container--info">
+                    <bio :index="index" :bio="volunteer.bio"></bio>
+                </div>
+            </div>
+        </template>
     </div>
 </template>
 
 <script>
-    import Logo from './logo.vue';
-    import Bio from './bio.vue';
     import Volunteer from './volunteer.vue';
-    import * as _ from 'lodash/collection';
+    import Bio from './bio.vue';
 
     export default {
         name: 'app',
         data() {
             return {
                 volunteers: store.volunteers,
-                baseImagePath: store.baseImagePath,
-                selected: undefined
-            }
-        },
-        methods: {
-            selectVolunteer(name) {
-                this.selected = _.find(this.volunteers, (v) => {
-                    return v.name === name;
-                });
-            },
-            clearSelection() {
-                this.selected = undefined;
+                baseImagePath: store.baseImagePath
             }
         },
         components: {
             volunteer: Volunteer,
-            bio: Bio,
-            logo: Logo
+            bio: Bio
         }
     }
 </script>
 
 <style lang="scss">
     @import '../sass/common';
+
     body {
-        font-family: $font;
         background-color: $logo-green;
-        color: $black;
+        font-family: $font;
     }
 
-    div.app-container {
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
+    div.header {
+        @include small-nudge();
 
-        &--info {
-            width: 40vw;
-            height: 28vh;
-            position: absolute;
-            bottom: 2vh;
-            left: 30vw;
+        h2 {
+            color: $logo-yellow;
+            font-weight: 700;
+            text-align: right;
         }
     }
+
 </style>

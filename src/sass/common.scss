@@ -10,3 +10,23 @@ $white: #e6f1eb;
   -moz-box-shadow: 0 0.5vh 10px 0 rgba(0,0,0,0.25);
   box-shadow: 0 0.5vh 10px 0 rgba(0,0,0,0.25);
 }
+
+@mixin small-nudge() {
+  @media (max-width: 1025px) {
+    h2 {
+      padding-right: 5vw;
+    }
+
+    p {
+      padding-right: 5vw;
+      padding-left: 5vw;
+    }
+  }
+}
+
+@mixin staggered-revel($modifier) {
+  $base-time: 250ms;
+  $element-time: (($modifier + 1) / 2) * $base-time;
+
+  transition: all $element-time ease-in;
+}

@@ -1,8 +1,6 @@
 <template>
-    <div class="volunteer" :style="style" :data-index="index">
-        <div class="volunteer--image">
-            <img :src="`${this.baseImagePath}/${this.volunteerName.toLowerCase().replace(' ', '-')}.jpg`" alt="">
-        </div>
+    <div class="volunteer initial" :id="id">
+        <div class="volunteer--image" :style="style"></div>
         <div class="volunteer--name">
             <h2>{{volunteerName}}</h2>
         </div>
@@ -10,15 +8,18 @@
 </template>
 
 <script>
+    const createBgImage = (path, name) => {
+        return `url('${path}/${name.toLowerCase().replace(' ', '-')}.jpg')`
+    };
     export default {
         name: 'volunteer',
-        props: ['index', 'volunteerName', 'baseImagePath'],
+        props: ['volunteerName', 'baseImagePath', 'index'],
         data() {
             return {
                 style: {
-                    'z-index': this.index * -1
+                    backgroundImage: createBgImage(this.baseImagePath, this.volunteerName)
                 },
-                className: `volunteer vol-${this.index}`
+                id: `vol-${this.index}`
             }
         }
     }
@@ -28,56 +29,50 @@
     @import '../sass/common.scss';
 
     div.volunteer {
-        position: absolute;
-        width: 10.5vw;
-        height: 10.5vw;
-        display: block;
-        cursor: pointer;
-        transform: translateX(44vw) translateY(70vh);
+        width: 100%;
+        margin-bottom: 5vh;
+        @media (min-width: 1024px) {
+            border-right: 5px solid $logo-yellow;
+        }
 
-        &.initial {
-            transition: all 1500ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
-            transform: translateX(5vw) translateY(70vh);
-
-            &.vol-1 {
-                transition: all 1500ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
-                transform: translateX(10vw) translateY(50vh);
-            }
-
-            &.vol-2 {
-                transition: all 1500ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
-                transform: translateX(15vw) translateY(30vh);
-            }
-
-            &.vol-3 {
-                transition: all 1500ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
-                transform: translateX(20vw) translateY(10vh);
+        @for $i from 0 through 10 {
+            &#vol-#{$i} {
+                opacity: 1;
+                @include staggered-revel($i);
             }
         }
 
         &--image {
-            width: 80%;
-            height: 80%;
-            margin: 0 auto;
-
-            img {
-                width: 100%;
-                height: 100%;
-                border-radius: 50%;
-                border: 0.25vw solid $logo-yellow;
-                @include shadow();
+            @media (max-width: 1024px) {
+                margin: 0 auto;
             }
+            width: 20vh;
+            height: 20vh;
+            overflow: hidden;
+            margin-bottom: 2vh;
+            border-radius: 50%;
+            border: 2px solid $logo-yellow;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            @include shadow();
         }
 
         &--name {
-            width: 100%;
-            opacity: 0;
-
             h2 {
-                font-family: $font;
                 font-size: 2vh;
+                color: $logo-yellow;
+                font-weight: 700;
+                width: 20vh;
                 text-align: center;
             }
         }
+
+        &.initial {
+            //opacity: 0 !important;
+        }
+
+
+
     }
 </style>
