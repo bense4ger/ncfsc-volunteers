@@ -32,12 +32,19 @@ class AppLoader {
                         $(document).foundation();
                     }
                 });
+
+                setTimeout(() => {
+                    //TODO: Replace the jQuery with proper state management and computed properties
+                    $('div.volunteer').removeClass('initial');
+                }, 500);
             })
             .catch((err) => {
                 //TODO: Global Error Handling
             });
     }
 }
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
     if(!window[appKey]) {

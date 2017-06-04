@@ -20,19 +20,15 @@ module.exports = {
         rules:[{
             test: /\.js$/,
             exclude: [/node_modules/],
-            use: [{
-                loader: 'babel-loader',
-                options: { presets : ['es2015'] }
-            }]
+            use: [{ loader: 'babel-loader' }]
         },
         {
             test: /\.vue$/,
-            use:[{
-                loader: 'vue-loader'
-            }]
+            use:[{ loader: 'babel-loader' }, { loader: 'vue-loader' }]
         },
         {
             test: /\.scss$/,
+            exclude: [/node_modules/],
             use: extractSass.extract({
                 use: [{ loader: 'css-loader' }, { loader: 'sass-loader'}],
                 fallback: 'style-loader'

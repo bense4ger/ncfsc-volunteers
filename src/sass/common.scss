@@ -25,7 +25,7 @@ $white: #e6f1eb;
 }
 
 @mixin staggered-revel($modifier) {
-  $base-time: 250ms;
+  $base-time: 350ms;
   $element-time: (($modifier + 1) / 2) * $base-time;
 
   transition: all $element-time ease-in;

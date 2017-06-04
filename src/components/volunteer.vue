@@ -69,7 +69,7 @@
         }
 
         &.initial {
-            //opacity: 0 !important;
+            opacity: 0 !important;
         }
 
 
