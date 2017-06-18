@@ -10,6 +10,7 @@ const appKey = 'ncfscVolunteers';
 
 const store = {
     volunteers: [],
+    helpers: [],
     baseImagePath: undefined
 };
 
@@ -23,6 +24,7 @@ class AppLoader {
         this.volunteerService.fetchData()
             .then((data) => {
                 store.volunteers = data.volunteers;
+                store.helpers = data.helpers;
                 store.baseImagePath = data.imagePath;
 
                 new Vue({

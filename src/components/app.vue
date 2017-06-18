@@ -13,12 +13,14 @@
                 </div>
             </div>
         </template>
+        <helpers></helpers>
     </div>
 </template>
 
 <script>
     import Volunteer from './volunteer.vue';
     import Bio from './bio.vue';
+    import Helpers from './helpers.vue'
 
     export default {
         name: 'app',
@@ -30,7 +32,8 @@
         },
         components: {
             volunteer: Volunteer,
-            bio: Bio
+            bio: Bio,
+            helpers: Helpers
         }
     }
 </script>

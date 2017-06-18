@@ -35,7 +35,7 @@
             border-right: 5px solid $logo-yellow;
         }
 
-        @for $i from 0 through 10 {
+        @for $i from 0 through 11 {
             &#vol-#{$i} {
                 opacity: 1;
                 @include staggered-revel($i);
