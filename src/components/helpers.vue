@@ -1,7 +1,7 @@
 <template>
     <div class="row helpers">
         <div class="small-12 columns">
-            <h4>A special thanks to these kind people who also help us out</h4>
+            <h5>A special thanks to these kind people who also help us out</h5>
             <ul>
                 <li v-for="helper in helpers">
                     {{ helper }}
@@ -26,8 +26,13 @@
 <style lang="scss">
     @import '../sass/common.scss';
     div.helpers {
-        h4, p, li {
+        p, li {
             color: $white;
+        }
+
+        h5 {
+            color: $logo-yellow;
+            font-weight: 500;
         }
 
         ul {
